@@ -1,4 +1,6 @@
 import Header from './componentes/Header';
+//Importante componente de Pesquisa
+import Pesquisa from './componentes/Pesquisa';
 import styled from 'styled-components';
 
 //Criando componente estilizado
@@ -14,6 +16,7 @@ function App() {
   return (
     <AppContainer>
       <Header/>
+      <Pesquisa/>
     </AppContainer>
   );
 }

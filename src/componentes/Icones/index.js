@@ -4,19 +4,31 @@
 //Importando imagens
 import perfil from '../../imagens/perfil.svg';
 import sacola from '../../imagens/sacola.svg';
-//importando estilo para logo
-import './estilo.css';
+import styled from 'styled-components';
+
+
+//Criando componente estilizados para os icones
+const Icones = styled.ul`
+    display: flex;
+    align-items: center;
+`
+
+//Criando componente estilizado para cada icone
+const Icone = styled.li`
+    margin-right: 40px;
+    width: 25px;
+`
 
 //Variavel para guardar os icones em uma lista e mostrar no .map
 const icones = [perfil, sacola];
 
 function IconesHeader() {
     return (        
-        <ul className="icones">
+        <Icones>
             { icones.map( (icone) => (
-                <li className="icone"><img src={icone} alt="Icones"></img></li>
+                <Icone><img src={icone} alt="Icones"></img></Icone>
             ) ) }
-        </ul>
+        </Icones>
     )
 }
 

@@ -2,6 +2,7 @@ import Header from './componentes/Header';
 //Importante componente de Pesquisa
 import Pesquisa from './componentes/Pesquisa';
 import styled from 'styled-components';
+import UltimosLancamentos from './componentes/UltimosLancamentos';
 
 //Criando componente estilizado
 //Criamos um container que vai ter uma div estilizada. Dentro dela escreveremos o CSS da div
@@ -17,6 +18,7 @@ function App() {
     <AppContainer>
       <Header/>
       <Pesquisa/>
+      <UltimosLancamentos/>
     </AppContainer>
   );
 }

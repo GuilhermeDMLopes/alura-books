@@ -1,0 +1,9 @@
+/*Estilo para o componente logo, repetindo toda vez que usarmos este componenete*/
+.logo {
+    display: flex;
+    font-size: 30px;    
+}
+
+.logo-img {
+    margin-right: 10px;
+}

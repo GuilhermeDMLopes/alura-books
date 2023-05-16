@@ -1,3 +1,5 @@
+# Creating a FullStack project using React and NodeJS. Consuming an API.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,0 +1,8 @@
+/*Estilo para o componente HEADER, repetindo toda vez que usarmos este componenete*/
+
+/*Estilo para o Header do App. Posiciona elementos horizontalmente centralizados*/
+.App-header {
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+}

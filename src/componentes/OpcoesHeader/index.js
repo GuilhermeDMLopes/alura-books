@@ -2,6 +2,8 @@
 //Componentes são funções que retornam um HTML
 
 import styled from 'styled-components';
+//Importando Link
+import { Link } from 'react-router-dom';
 
 //Criando componente estilizado para opcoes
 const Opcoes = styled.ul`
@@ -22,13 +24,14 @@ const Opcao = styled.li`
 `
 
 //Variavel para guardar os textos da lista e mostrar no .map
-const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE'];
+const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'ESTANTE'];
 
+//Direcionando para os links das respectivas opções usando /${}
 function OpcoesHeader() {
     return (
         <Opcoes>
           { textoOpcoes.map( (texto) => (
-            <Opcao><p>{texto}</p></Opcao>
+            <Link to={`/${texto.toLowerCase()}`} ><Opcao><p>{texto}</p></Opcao></Link>
           ) ) }
         </Opcoes>
     )

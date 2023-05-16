@@ -2,6 +2,7 @@
 //Componentes são funções que retornam um HTML
 
 //Importanto componenetes para o Header
+import { Link } from 'react-router-dom';
 import IconesHeader from '../../componentes/Icones';
 import Logo from '../../componentes/Logo';
 import OpcoesHeader from '../../componentes/OpcoesHeader';
@@ -14,10 +15,13 @@ const HeaderContainer = styled.header`
     justify-content: center;
 `
 
+//Criando Link para quando clicarmos na logo, voltar a pagina inicial
 function Header() {
     return (
         <HeaderContainer>
-            <Logo/>
+            <Link to="/">
+                <Logo/>                
+            </Link>
             <OpcoesHeader/>     
             <IconesHeader/>     
       </HeaderContainer>

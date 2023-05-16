@@ -1,10 +1,17 @@
 /*Arquivo contendo estrutura global do React na nossa aplicação*/
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Home from './rotas/Home';
 import reportWebVitals from './reportWebVitals';
 //IMportando GLobalStyle para criar estilo global para nossa aplicação
 import { createGlobalStyle } from 'styled-components';
+//Importando react router para fazer as rotas
+//BrowserRouter é o encapsulador das rotas, ele que permite que elas existam
+//Routes encobre todas as nossas rotas e adicionamos rota por rota dentro dele
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//Importando Header
+import Header from './componentes/Header';
+import Favoritos from './rotas/Favoritos';
 
 //Criando estilo global em si. Todo elemento do tipo body terá esse estilo por padrão
 //Adicionando o estilo de remover as bolinhas do li (conforme haviamos deixado em App.js)
@@ -27,12 +34,18 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 `
-
+//Adicionando Header na aplicação
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyle/>
-    <App />
+    <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path="/favoritos" element={<Favoritos/>}/>
+        <Route path="/" element={<Home />}/>
+      </Routes>
+    </BrowserRouter>    
   </React.StrictMode>
 );
 

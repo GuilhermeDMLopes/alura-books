@@ -4,9 +4,11 @@
 import Input from "../Input";
 import styled from 'styled-components';
 //importando estado
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getLivros } from "../../servicos/livros";
+import { postFavorito } from "../../servicos/favoritos";
 //Importando dados dos livros para pesquisa
-import { livros } from './dadosPesquisa'
+//import { livros } from './dadosPesquisa'
 
 //Criando container de Pesquisa
 const PesquisaContainer = styled.section`
@@ -56,9 +58,30 @@ function Pesquisa() {
     //Criando estados. livrosPesquisados e setLivrosPesquisados.
     //O State muda de acordo com os tipos de estados. Como são listas, passamos uma lista por parametro []
     const [livrosPesquisados, setLivrosPesquisados] = useState([]);
-    
+    //Criando State para armazenar os livros
+    const [ livros, setLivros ] = useState([])
+
+    //Criando função para pegar os livros ja que o useEffect não lida muito bem com async/await
+    async function fetchLivros() {
+        const livrosDaApi = await getLivros()
+        setLivros(livrosDaApi)
+    }
+
+    //usaremos o useEffect para ter os dados dos livros prontos quando pesquisarmos
+    //Recebe a ação que ele vai fazer quando a tela carregar (chamar API de livros)
+    //Segundo parametro é uma ação na tela. Ex: quando valor de livros for mudado ([livros])
+    useEffect(() => {
+        fetchLivros()
+    }, [])    
+
     //Verificando livros pesquisados
     //console.log(livrosPesquisados)
+
+    //Função para adicionar um livro aos favoritos ao clicar nele
+    async function insertFavorito(id) {
+        await postFavorito(id)
+        alert(`Livro de id: ${id} inserido`)
+    }
 
     return(
         <PesquisaContainer>
@@ -70,12 +93,12 @@ function Pesquisa() {
                     //pega texto digitado pelo usuario
                     const textoDigitado = evento.target.value
                     //Resultado da pesquisa e filtrando apenas os nomes dos livros que encaixam com texto digitado
-                    const resultadoPesquisa = livros.filter( livro => livro.nome.includes(textoDigitado))
+                    const resultadoPesquisa = livros.filter( livro => livro.nome.includes(textoDigitado))                    
                     setLivrosPesquisados(resultadoPesquisa)                    
                 }} 
             />
             { livrosPesquisados.map( livro => (
-                <Resultado>
+                <Resultado onClick={() => insertFavorito(livro.id)}>
                     <p>{livro.nome}</p>
                     <img src={livro.src} alt='imagem do livro'></img>
                 </Resultado>
